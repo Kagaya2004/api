@@ -9,10 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up(): void // Cria a Tabela
     {
         Schema::create('autors', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('nome', 100); // string(nome da coluna, tamanho máximo);
+            $table->string('cidade', 100);
+            $table->string('endereco', 100);
+            $table->string('bairro', 100);
+            $table->string('cep', 20);
+            $table->string('email', 100);
+            $table->string('telefone', 100);
             $table->timestamps();
         });
     }
@@ -20,7 +27,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down(): void // Apaga a tabela
     {
         Schema::dropIfExists('autors');
     }
