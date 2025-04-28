@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import axiosClient from '../../axiosClient';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-function UserFormUpdate()
+function UserFormStore()
 {
     const navigate = useNavigate();
 
@@ -99,4 +99,4 @@ function UserFormUpdate()
     )
 }
 
-export default UserFormUpdate
+export default UserFormStore
