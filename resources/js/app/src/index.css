@@ -3,7 +3,8 @@
   margin: 0;
 }
 
-html, body{
+/* Para estilizar um id específico deve escrever: #nomedaid*/
+html, body, #defaultLayout{
     min-height: 100vh;
 }
 
@@ -93,6 +94,25 @@ input:focus{
   color: #fff;
 }
 
+.btn-logout {
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  color: #212121;
+  transition: all 0.3s;
+  border-radius: 6px;
+}
+
+.btn-logout:hover{
+  background-color: rgba(0,0,0,0.1);
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus{
+  background-color: #5b08a7;
+  color:white;
+}
+
 /*Estilo para Tabela*/
 table{
   width: 100%;
@@ -159,6 +179,86 @@ th.actions, td.actions{
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
   margin-top: 0.5rem;
+}
+
+/* Estilo para Login, Signup, UpdatePassword, ForgotPassword*/
+.login-signup-form{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-signup-form .form{
+  width: 560px;
+  margin-top: 200px;
+  position: relative;
+  /*z-index: Prioridade de Sobreposição*/
+  z-index: 1;
+  background: white;
+  max-width: 560px;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.8);
+  font-size: 1rem;
+}
+
+.login-signup-form .title{
+  font-size: 25px;
+  text-align: center;
+}
+
+.p-20{
+  margin-bottom: 20px;
+}
+
+/* Estilo pra o DefaultLayout */
+#defaultLayout{
+  /* display: flex coloca todos alinhados numa única linha */
+  display: flex;
+}
+
+#defaultLayout aside{
+  /* margin-top: 80px; */
+  width: 240px;
+  padding: 1rem;
+  color: white;
+  background-color: #000;
+}
+
+#defaultLayout aside > a{
+  display:block;
+  padding: 0.75rem 1rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+#defaultLayout aside > a:hover{
+  background-color: rgb(179,174,174);
+  border-radius: 6px;
+}
+
+#defaultLayout .content{
+  /*flex: 1 -> Alinhar à Esquerda*/
+  flex: 1;
+}
+
+#defaultLayout header{
+  height: 80px;
+  background-color: rgb(3, 158, 206);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+};
+
+#defaultLayout main{
+  padding: 2rem;
 }
 
 /*
