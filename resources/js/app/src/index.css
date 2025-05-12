@@ -21,7 +21,8 @@ body{
   background-color: #f6f6f6
 }
 
-.btn
+/* Estilo dos Botões*/
+.btn,
 .btn-add,
 .btn-edit,
 .btn-delete,
@@ -211,6 +212,18 @@ th.actions, td.actions{
   margin-bottom: 20px;
 }
 
+.login-signup-form .form .message{
+  margin: 15pix;
+  color: #b3b3b3;
+  font-size: 16px;
+  text-align: center;
+}
+
+.login-signup-form .form .message a{
+  color: #5b08a7;
+  text-decoration: none;
+}
+
 /* Estilo pra o DefaultLayout */
 #defaultLayout{
   /* display: flex coloca todos alinhados numa única linha */
@@ -259,6 +272,10 @@ th.actions, td.actions{
 
 #defaultLayout main{
   padding: 2rem;
+}
+
+.message{
+
 }
 
 /*
