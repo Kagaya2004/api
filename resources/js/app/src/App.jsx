@@ -1,10 +1,13 @@
+import ContextProvider from './context/ContextProvider'
 import Rotas from './routes/Rotas'
 
 
 function App() {
   return(
     <>
-      <Rotas/>
+      <ContextProvider>
+        <Rotas/>
+      </ContextProvider>
     </>
   )
 }

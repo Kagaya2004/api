@@ -14,12 +14,13 @@ export default function Login(){
 
         const login = {
             email: emailRef.current.value,
-            password: passwordRef.current.value
+            password: passwordRef.current.value,
         }
 
         axiosClient.post('/login', login)
                    .then(({data})=>{
                         console.log(data);
+                        localStorage.setItem('TOKEN', data.token);
                    })
                    .catch((erro)=>{
                         console.log(erro);
@@ -42,7 +43,7 @@ export default function Login(){
                     <input type="text" placeholder="E-mail" ref={emailRef} className='p-20'/>
                     <input type="password" placeholder="Senha" ref={passwordRef} className='p-20'/>
                     <button type="submit" className='btn btn-block p-20'>Login</button>
-                    <p className='message'>Não está registrado</p><Link to="/register">Criar nova conta</Link>
+                    <p className='message'>Não está registrado? <Link to="/register">Criar nova conta</Link></p>
                 </form>
             </div>
         </div>

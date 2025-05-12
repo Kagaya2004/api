@@ -12,12 +12,13 @@ import Login from '../views/login/Login'
 import Signup from '../views/login/Signup'
 import UpdatePassword from '../views/login/UpdatePassword'
 import ForgotPassword from '../views/login/ForgotPassword'
+import ContextProvider from '../context/ContextProvider'
  
  const Rotas = () => {
    return (
      <Routes>
-        <Route path='/' element={<Login/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/' element={<Login/>}/>
         <Route path='/register' element={<Signup/>}/>
         <Route path='/updatepassword' element={<UpdatePassword/>}/>
         <Route path='/forgotpassword' element={<ForgotPassword/>}/>

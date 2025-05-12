@@ -20,7 +20,7 @@ export default function UpdatePassword(){
                     <input type="password" placeholder="Senha"/>
                     <input type="password" placeholder="Confirmar Senha"/>
                     <button className='btn btn-block'>Salvar</button>
-                    <p className='message'>Acesso ao sistema</p><Link to="/login">Login</Link>
+                    <p className='message'>Acesso ao sistema <Link to="/login">Login</Link></p>
                 </form>
             </div>
         </div>

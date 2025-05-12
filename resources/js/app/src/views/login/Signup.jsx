@@ -24,7 +24,7 @@ export default function Signup(){
                     <input type="password" placeholder="Senha"/>
                     <input type="password" placeholder="Confirmar Senha"/>
                     <button className='btn btn-block'>Salvar</button>
-                    <p className='message'>Está registrado?</p><Link to="/login">Login</Link>
+                    <p className='message'>Está registrado? <Link to="/login">Login</Link></p>
                 </form>
             </div>
         </div>
