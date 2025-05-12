@@ -25,7 +25,7 @@ export default function Login(){
                         console.log(erro);
                    })
 
-        setMessage("Login realizado com Sucesso");
+        setMessage("Login realizado com Sucesso" + login);
     }
 
     return (
