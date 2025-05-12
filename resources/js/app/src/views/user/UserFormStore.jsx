@@ -82,20 +82,6 @@ function UserFormStore()
                 
             </div>
         </Fragment>
-
-        /*
-        OU
-        Div
-        <div>
-
-        </div>
-
-        OU
-
-        Fragmento Vazio
-        <>
-        </>
-        */
     )
 }
 
