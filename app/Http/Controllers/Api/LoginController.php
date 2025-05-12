@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -19,12 +21,16 @@ class LoginController extends Controller
         }
 
         if (!Hash::check($password, $user->password)){
-            
+            return response()->json([
+                'message'=>'Senha do usuário inválida',
+            ]);
         }
+
+        $token = $user->createToken($user->name)->plainTextToken();
 
         return response()->json([
             'email'=>$email,
-            'password'=>$password,
+            'token'=>$token,
         ]);
     }
 }
