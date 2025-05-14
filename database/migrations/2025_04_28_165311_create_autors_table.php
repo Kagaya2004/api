@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void // Cria a Tabela
     {
-        Schema::create('autors', function (Blueprint $table) {
+        Schema::create('autores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 100); // string(nome da coluna, tamanho máximo);
             $table->string('cidade', 100);
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void // Apaga a tabela
     {
-        Schema::dropIfExists('autors');
+        Schema::dropIfExists('autores');
     }
 };

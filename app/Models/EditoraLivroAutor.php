@@ -17,4 +17,9 @@ class EditoraLivroAutor extends Model
     {
         $this->belongsTo(Autor::class);
     }
+
+    public function livro()
+    {
+        $this->belongsTo(Livro::class);
+    }
 }
