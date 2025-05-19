@@ -10,6 +10,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 # get(endereço digitado, método a ser usado)
 Route::prefix('/user')->group(function (){
