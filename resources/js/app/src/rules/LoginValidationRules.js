@@ -1,3 +1,6 @@
+import useValidator from "../hook/useValidator";
+import { ERRO_LOGIN, LOGIN } from "../types/Login";
+
 const NUMBER = '0123456789';
 const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const LOWERCASE = 'abcdefghijklmnopqrstuvwxyz';
@@ -41,4 +44,8 @@ const loginValidationRules = {
     
     
     
+}
+
+export const useValidarDadosLogin = () => {
+    return useValidator(LOGIN, ERRO_LOGIN, loginValidationRules);
 }

@@ -5,7 +5,7 @@ export const LOGIN ={
 
 export const ERRO_LOGIN ={
     emailMensagem: [],
-    email: false,
+    email: false, // Indica a existência de erro no campo email
     passwordMensagem:[],
-    password: false,
+    password: false, // Indica a existência de erro no campo password
 }
