@@ -23,7 +23,7 @@ class UpdateAutorRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:autors,email',
+            'email' => 'required|string|email|max:100|unique:autors,email',
             'endereco' => 'required|string|max:100',
             'cidade' => 'required|string|max:100',
             'bairro' => 'required|string|max:100',
@@ -41,7 +41,6 @@ class UpdateAutorRequest extends FormRequest
             'endereco.required'=>'O endereço deve ser informado',
             'bairro.required'=>'O bairro deve ser informado',
             'cep.required'=>'O CEP deve ser informado',
-            'telefone.required'=>'O telefone deve ser informado',
         ];
     }
 }

@@ -19,7 +19,7 @@ class AutorController extends Controller
         $search = $request->get('search', ''); // Pesquisa
 
         // Seleciona os dados do usuário
-        $query = Autor::select('id', 'nome', 'email', 'created_at', 'updated_at')
+        $query = Autor::select('id', 'nome', 'email')
             ->orderBy($props, $dir);
         
         // Quantidade de Registros

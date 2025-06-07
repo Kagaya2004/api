@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosClient from "../../axiosClient";
 import { useLogin } from "../../context/ContextProvider";
 import { useValidarDadosLogin } from "../../rules/LoginValidationRules";
+import MensagemErro from "../../components/mensagens/MensagemErro";
 
 
 export default function Login(){
 
-    const {model, error, setError, handleChangeField, validateAll} = useValidarDadosLogin();
+    const {model, error, formValid, handleChangeField, validateAll} = useValidarDadosLogin();
     const navigate = useNavigate();
 
     const { _setToken, _setUser } = useLogin();
@@ -30,10 +31,8 @@ export default function Login(){
 
     const onSubmit = (e) => {
         e.preventDefault();
-        let erros = validateAll();
-        console.log(erros);
+        formValid();
         console.log(error);
-        setError(erros);
         
         console.log("Passando pelo OnSubmit");
         
@@ -68,32 +67,32 @@ export default function Login(){
                         </div>
                     }
                     <div className ="p-20">
-                    <input
-                        type="text"
-                        placeholder="E-mail"
-                        name="email"
-                        value={model.email}
-                        className={getInputClass(error.email)}
-                        onChange={handleChangeField}
+                        <input type="text"
+                            placeholder="E-mail"
+                            name="email"
+                            value={model.email}
+                            className={getInputClass(error.email)}
+                            onChange={handleChangeField}
                     />
                     {
-                        error.email ?(
-                                <div className="invalid-feedback">{
-                                    error.emailMensagem.map((mens, index) => {
-                                        return (
-                                            <p key={index}>
-                                                <span style={{margin:"0", color:"red"}}>{mens}</span>
-                                            </p>
-                                        )
-                                    })
-                                }
-                                </div>
-                        ) : null
+                        <MensagemErro
+                            error = {error.email}
+                            mensagem = {error.emailMensagem}
+                        />
+                            /* <div className="invalid-feedback">{
+                                error.emailMensagem.map((mens, index) => {
+                                    return (
+                                        <p key={index}>
+                                            <span style={{margin:"0", color:"red"}}>{mens}</span>
+                                        </p>
+                                    )
+                                })
+                            } 
+                        </div> */
                     }
                     </div>
                     <div className="p-20">
-                        <input
-                            type="password"
+                        <input type="password"
                             placeholder="Senha"
                             name="password" 
                             value={model.password} 
@@ -101,8 +100,11 @@ export default function Login(){
                             onChange={handleChangeField}
                         />
                         {
-                            error.password ?(
-                                <div className="invalid-feedback">{
+                            <MensagemErro
+                                error = {error.password}
+                                mensagem = {error.passwordMensagem}
+                            />
+                                /* <div className="invalid-feedback">{
                                     error.passwordMensagem.map((mens, index) => {
                                         return (
                                             <p key={index}>
@@ -111,11 +113,11 @@ export default function Login(){
                                         )
                                     })
                                 }
-                                </div>
-                            ) : null
+                                </div> */
                         }
                     </div>
-                    <button type="submit" className='btn btn-block p-20'>Login</button>
+                    <button type="submit" 
+                        className='btn btn-block p-20'>Login</button>
                     <p className='message'>Não está registrado? <Link to="/register">Criar nova conta</Link></p>
                 </form>
             </div>

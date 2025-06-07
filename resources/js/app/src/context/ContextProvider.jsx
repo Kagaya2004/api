@@ -18,8 +18,9 @@ const ContextProvider = ({children}) => {
     }
 
     const _setUser = (user) => {
+        console.log(user);
         setUser(user);
-        sessionStorage.setItem('USER', user.name);
+        //sessionStorage.setItem('USER', user.name);
     }
 
     return (

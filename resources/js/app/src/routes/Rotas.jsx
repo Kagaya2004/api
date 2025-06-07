@@ -7,18 +7,17 @@ import UserFormShow from '../views/user/UserFormShow'
 import UserFormDestroy from '../views/user/UserFormDestroy'
 import Layout from './Layout'
 import Dashboard from '../components/Dashboard'
-import NotFound from '../views/user/NotFound'
+import NotFound from '../views/NotFound'
 import Login from '../views/login/Login'
 import Signup from '../views/login/Signup'
 import UpdatePassword from '../views/login/UpdatePassword'
 import ForgotPassword from '../views/login/ForgotPassword'
-import ContextProvider from '../context/ContextProvider'
  
  const Rotas = () => {
    return (
      <Routes>
-        <Route path='/login' element={<Login/>}/>
         <Route path='/' element={<Login/>}/>
+        <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Signup/>}/>
         <Route path='/updatepassword' element={<UpdatePassword/>}/>
         <Route path='/forgotpassword' element={<ForgotPassword/>}/>

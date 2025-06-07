@@ -23,10 +23,8 @@ export default function DefaultLayout({children})
             })
             .catch((error)=>{
                 console.log(error);
-        })
-        _setUser({});
-        _setToken(null);
-        navigate('/login');
+            }
+        )
     }
 
     return (

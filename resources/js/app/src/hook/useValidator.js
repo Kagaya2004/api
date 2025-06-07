@@ -21,22 +21,20 @@ const useValidator = (initialModel, errorModel, validationRules) => {
         Object.keys(validationRules).forEach((field) => {
             const validationFunction = validationRules[field];
             const value = model[field];
-
-            erros[`${field}Mensagem`] = validationFunction(value, model);
-            erros[field]=!!(erros[`${field}Mensagem`] && erros[`${field}Mensagem`].length > 0);
-
+            const mensagens = validationFunction(value, model);
+            erros['$(field)Mensagem'] = mensagens;
+            const hasErros = Array.isArray(mensagens) && mensagens.some(msg => typeof msg
+                === 'string' && msg.trim().length > 0);
+            
+            erros[field] = hasErros; // True ou False
             console.log(erros);
-            console.log(field);
-            console.log(validationFunction);
-            console.log(model);
         })
-        setError(erros);
-        console.log(erros);
+        
         return erros;
     }
 
     const formValid = () => {
-        const errors = validateAll();
+        const erros = validateAll();
         setError(erros);
         return !hasErrors(erros);
     }
