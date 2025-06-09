@@ -1,98 +1,106 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import axiosClient from '../../axiosClient';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useValidarDadosUser } from '../../rules/UserValidationRules';
+import Input from '../../components/input/Input';
 
-function UserFormUpdate()
-{
+function UserFormUpdate() {
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({
-        id:null,
-        name:'',
-        email:'',
-    });
+    const {
+        model,
+        setModel,
+        error,
+        formValid,
+        handleChangeField,
+        handleBlurField
+    } = useValidarDadosUser();
 
-    const {id} = useParams();
+    const { id } = useParams();
 
-    if (id)
-    {
+    if (id) {
         useEffect(() => {
             axiosClient.get(`/user/show/${id}`)
-            .then(({data}) =>{
-                setUser(data.data);
-                //console.log(data.data);
-            }).catch((error)=>{
-                console.log(error);
-            })
-        },[id]);
+                .then(({ data }) => {
+                    setModel(data.data);
+                    //console.log(data.data);
+                }).catch((error) => {
+                    console.log(error);
+                })
+        }, [id]);
     }
 
-    // Pega informações do Servidor
-    axiosClient.get(`/user/show/${id}`)
-                .then(({data})=>{
-                   //console.log(data.data); 
-                })
-                .catch();
+
 
     // Função do tipo Anônima
     const onSubmit = (e) => {
         e.preventDefault();
-        axiosClient.put(`/user/update/${id}`, user)
-            .then(() =>{
-                setUser({});
-                console.log('Usuário alterado com sucesso');
-                navigate('/user/index')
-            }).catch((error)=>{
-                console.log(error);
-            })
-        //console.log(e);
-        //console.log("Passando pela função onSubmit")
+        if (formValid) {
+            axiosClient.put(`/user/update/${id}`, model)
+                .then(() => {
+                    console.log('Usuário alterado com sucesso');
+                    navigate('/user/index')
+                }).catch((error) => {
+                    console.log(error);
+                })
+        }
+
     }
 
-    const onCancel = (e) => {
-        //e.preventDefault();
-        navigate('/user/index');
-        //console.log(e);
-        //console.log("Passando pela função onSubmit")
-    }
-
-
-    
-    return(
+    console.log(model)
+    return (
         <Fragment>
             <div className="display">
                 <div className="card animated fadeinDown">
-                    {user.id && <h1>Alteração de Usuário: { user.name}</h1>}
-
-                    <form onSubmit={(e)=>onSubmit(e)}>
-                        <input
-                            value={user.name}
-                            placeholder="Nome do Usuário"
-                            onChange={
-                                e => setUser({
-                                    ...user, name:e.target.value
-                                })
-                            } />
-                        <input
-                            value={user.email}
-                            placeholder="Email do Usuário"
-                            onChange={
-                                e => setUser({
-                                    ...user, email:e.target.value
-                                })
-                            }
+                    {model.id && <h1>Alteração de Usuário: {model.name}</h1>}
+                    <form onSubmit={(e) => onSubmit(e)}>
+                        <div className='p-20'>
+                            <Input
+                                id="name"
+                                type="text"
+                                value={model.name}
+                                placeholder="Nome"
+                                handleChangeField={handleChangeField}
+                                handleBlurField={handleBlurField}
+                                error={error.name}
+                                mensagem={error.nameMensagem}
+                            />
+                        </div>
+                        <div className='p-20'>
+                            <Input
+                                id="email"
+                                type="text"
+                                value={model.email}
+                                placeholder="Email"
+                                handleChangeField={handleChangeField}
+                                handleBlurField={handleBlurField}
+                                error={error.email}
+                                mensagem={error.emailMensagem}
+                            />
+                        </div>
+                        <div className='p-20'>
+                            <Input
+                            id="password"
+                            type="text"
+                            value={model.password}
+                            placeholder="Senha"
+                            handleChangeField={handleChangeField}
+                            handleBlurField={handleBlurField}
+                            error={error.password}
+                            mensagem={error.passwordMensagem}
                         />
+                        </div>
                         <button className="btn btn-edit">Salvar</button>
                         <Link
-                            type='button' 
+                            type='button'
                             className='btn btn-cancel'
                             to='/user/index'>
-                                Cancelar
+                            Cancelar
                         </Link>
                     </form>
                 </div>
 
-                
+
             </div>
         </Fragment>
 

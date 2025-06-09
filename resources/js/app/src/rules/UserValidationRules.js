@@ -1,5 +1,5 @@
 import useValidator from "../hook/useValidator";
-import { ERRO_LOGIN, LOGIN } from "../types/Login";
+import { ERROR_USER, USER } from "../types/User";
 
 const NUMBER = '0123456789';
 const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVXWYZ';
@@ -7,7 +7,14 @@ const LOWERCASE = 'abcedefghijklmnopqrstuvxwyz';
 const SPECIALCHARACTER  = "!'^%#()=?@";
 const PASSWORD_LENGTH = 8;
 
-const loginValidationRules  =  {
+const userValidationRules  =  {
+    name:(name)=>{
+        let mensagens = [];
+        if (!name || name.trim().length === 0 ) {
+           mensagens.push('Obrigatório informar o nome do usuário');
+        }
+        return mensagens;
+    },
 
     email:(email)=>{
         let mensagens = [];
@@ -51,14 +58,14 @@ const loginValidationRules  =  {
 
         if (!hasUpperCase){
             mensagens.push('A senha deve conter pelo menos um caracter maíuscula');
-        } */    
+        } */
 
         return mensagens;
     },
 }
 
 
-export const useValidarDadosLogin = () => {
-    return useValidator(LOGIN, ERRO_LOGIN, loginValidationRules);
+export const useValidarDadosUser = () => {
+    return useValidator(USER, ERROR_USER, userValidationRules);
 }
 
