@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UsuarioController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\RegisterUserController;
+use App\Http\Controllers\Api\VerifyUserAccountController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -11,6 +13,8 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/register', [RegisterUserController::class, 'signup']);
+Route::get('/verify_account', [VerifyUserAccountController::class, 'verifyUserAccount']);
 
 # get(endereço digitado, método a ser usado)
 Route::prefix('/user')->group(function (){
